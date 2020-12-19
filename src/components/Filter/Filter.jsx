@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SpriteSvg from '@utils/SpriteSvg';
 import { useHistory } from 'react-router-dom';
 import styles from './Filter.module.scss';
-import { keyCode, TYPES, SVG_NAMES } from '@constants';
+import { keyCode, TYPES, SVG_NAMES, filterId } from '@constants';
 
 const Filter = ({ filterValue, onChangeFilter }) => {
-	const [value, setValue] = useState(filterValue);
-	const { filter, filter__heading, filter__input, filter__btn } = styles;
-	const { TEXT, BUTTON, CLICK } = TYPES;
+	const { filter, filter__heading, filter__input, filter__label } = styles;
+	const { TEXT } = TYPES;
 	const history = useHistory();
 
 	const handleInputChange = (evt) => {
-		setValue(evt.target.value);
+		onChangeFilter(evt.target.value);
+		history.push(`/items?search=${evt.target.value}`);
 	};
 
 	const handleFilterChange = (evt) => {
-		if (evt.keyCode === keyCode.ENTER || evt.type === CLICK) {
-			onChangeFilter(value);
-			history.push(`/items/?search=${value}`, 'search');
+		if (evt.keyCode === keyCode.ESC) {
+			evt.target.blur();
 		}
 	};
 
@@ -27,18 +26,15 @@ const Filter = ({ filterValue, onChangeFilter }) => {
 			<h2 className={filter__heading}>Filter</h2>
 			<input
 				className={filter__input}
+				id={filterId}
 				type={TEXT}
-				value={value}
+				value={filterValue}
 				onChange={handleInputChange}
 				onKeyDown={handleFilterChange}
 			/>
-			<button
-				className={filter__btn}
-				type={BUTTON}
-				onClick={handleFilterChange}
-			>
+			<label className={filter__label} htmlFor={filterId}>
 				<SpriteSvg name={SVG_NAMES.SEARCH} />
-			</button>
+			</label>
 		</div>
 	);
 };

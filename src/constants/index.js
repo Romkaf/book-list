@@ -43,7 +43,10 @@ export const BOOK_FORM = 'BOOK_FORM';
 export const EDIT_FORM = 'EDIT_FORM';
 
 export const keyCode = {
-	ENTER: 13,
+	ESC: 27,
 };
+
+export const filterId = 'filter';
+export const searchLength = 8;
 
 export const locStorKey = 'bookState';

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 class BookCardContainer extends Component {
 	shouldComponentUpdate(nextProps) {
-		return nextProps.location.state !== 'search';
+		return !nextProps.location.search;
 	}
 
 	render() {
