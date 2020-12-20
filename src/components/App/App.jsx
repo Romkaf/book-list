@@ -12,7 +12,7 @@ const App = () => {
 			<div className={styles.app}>
 				<FormContainer />
 				<FilterContainer />
-				<div className={styles.app__wrapper}>
+				<div className={styles.wrapper}>
 					<BookListContainer />
 					<Route
 						path="/items/:id"

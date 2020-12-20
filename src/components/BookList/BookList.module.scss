@@ -10,7 +10,7 @@
 		width: 100%;
 	}
 
-	&__heading {
+	.heading {
 		position: absolute;
 		top: -50px;
 		left: 1%;
@@ -31,7 +31,7 @@
 	border-radius: 8px;
 	box-shadow: 0 0 10px 1px $light-black;
 
-	&__header {
+	.header {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
@@ -48,7 +48,7 @@
 		flex-direction: column;
 	}
 
-	&__row {
+	.row {
 		border-bottom: 1px solid $light-black;
 
 		&:last-child {
@@ -69,7 +69,7 @@
 		}
 	}
 
-	&__link {
+	.link {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;

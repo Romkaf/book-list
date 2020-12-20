@@ -18,7 +18,7 @@
 	border-radius: 8px;
 	box-shadow: 0 0 10px 1px $light-black;
 
-	&__heading {
+	.heading {
 		position: absolute;
 		top: -50px;
 		left: 1%;
@@ -32,7 +32,7 @@
 		}
 	}
 
-	&__editForm {
+	.editForm {
 		display: flex;
 		flex-direction: column;
 		width: 65%;
@@ -43,7 +43,7 @@
 			font-weight: 500;
 		}
 
-		.card__cover {
+		.cover {
 			width: 30%;
 			margin-bottom: 15px;
 
@@ -68,7 +68,7 @@
 		}
 	}
 
-	&__cover {
+	.cover {
 		width: 150px;
 		margin-right: 5%;
 		margin-bottom: 3%;
@@ -79,25 +79,25 @@
 		}
 	}
 
-	&__file {
+	.file {
 		margin-top: 10px;
 	}
 
-	&__textinfo {
+	.info {
 		order: 1;
 		width: 100%;
 	}
 
-	&__name {
+	.name {
 		font-size: 1.5em;
 		margin-bottom: 0.2em;
 	}
 
-	&__author {
+	.author {
 		font-size: 0.9em;
 	}
 
-	&__otherDetails {
+	.otherDetails {
 		margin-top: 1em;
 		font-size: 0.9em;
 		p {
@@ -111,12 +111,12 @@
 		}
 	}
 
-	&__buttons {
+	.buttonWrapper {
 		margin-left: auto;
 		padding: 0.1em 0.3em;
 	}
 
-	&__btn {
+	.btn {
 		display: inline-block;
 		box-sizing: content-box;
 		width: 16px;

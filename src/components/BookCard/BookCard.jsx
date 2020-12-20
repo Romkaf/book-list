@@ -20,16 +20,14 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 	const {
 		wrapper,
 		card,
-		card__heading,
-		card__textinfo,
-		card__cover,
-		card__name,
-		card__author,
-		card__otherDetails,
-		card__publisher,
-		card__date,
-		card__buttons,
-		card__btn,
+		heading,
+		info,
+		cover,
+		name: bookName,
+		author: bookAuthor,
+		otherDetails,
+		buttonWrapper,
+		btn,
 	} = styles;
 
 	const handleBtnEdit = () => {
@@ -54,7 +52,7 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 	return (
 		<div className={wrapper}>
 			<article className={card}>
-				<h2 className={card__heading}>Book Card</h2>
+				<h2 className={heading}>Book Card</h2>
 				{isEdit ? (
 					<BookEdit
 						book={book}
@@ -63,28 +61,28 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 					/>
 				) : (
 					<>
-						<div className={card__cover}>
+						<div className={cover}>
 							<img src={image} alt={name} />
 						</div>
-						<div className={card__textinfo}>
-							<h4 className={card__name}>{name}</h4>
-							<span className={card__author}>{author}</span>
-							<div className={card__otherDetails}>
+						<div className={info}>
+							<h4 className={bookName}>{name}</h4>
+							<span className={bookAuthor}>{author}</span>
+							<div className={otherDetails}>
 								<p>
 									{PUBLISHER}
-									<span className={card__publisher}>{publisher}</span>
+									<span>{publisher}</span>
 								</p>
 								<p>
 									{DATE}
-									<span className={card__date}>{date}</span>
+									<span>{date}</span>
 								</p>
 							</div>
 						</div>
-						<div className={card__buttons}>
+						<div className={buttonWrapper}>
 							{buttons.map((it) => (
 								<Link
 									to={it.link}
-									className={card__btn}
+									className={btn}
 									key={it.id}
 									title={it.title}
 									onClick={it?.func}

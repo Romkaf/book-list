@@ -4,20 +4,13 @@ import styles from './BookList.module.scss';
 import { Link } from 'react-router-dom';
 
 const Booklist = ({ books }) => {
-	const {
-		bookList,
-		bookList__heading,
-		table,
-		table__row,
-		table__header,
-		table__link,
-	} = styles;
+	const { bookList, heading, table, row, header, link } = styles;
 
 	const renderItem = ({ name, author, id }) => {
 		return (
-			<tr className={table__row} key={id}>
+			<tr className={row} key={id}>
 				<td>
-					<Link to={`/items/${id}`} className={table__link}>
+					<Link to={`/items/${id}`} className={link}>
 						<span>{name}</span>
 						<span>{author}</span>
 					</Link>
@@ -28,10 +21,10 @@ const Booklist = ({ books }) => {
 
 	return (
 		<div className={bookList}>
-			<h2 className={bookList__heading}>Book List</h2>
+			<h2 className={heading}>Book List</h2>
 			<table className={table}>
 				<thead>
-					<tr className={table__header}>
+					<tr className={header}>
 						<td>Книга</td>
 						<td>Автор</td>
 					</tr>

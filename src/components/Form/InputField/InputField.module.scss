@@ -9,7 +9,7 @@
 	min-height: 64px;
 	margin: auto;
 
-	&__label {
+	.label {
 		position: absolute;
 		left: 4%;
 		max-width: 100%;
@@ -22,7 +22,7 @@
 		}
 	}
 
-	&__input {
+	.input {
 		width: 100%;
 		min-height: 55px;
 		padding: 25px 10px 15px 17px;
@@ -88,7 +88,7 @@
 		}
 	}
 
-	&__error {
+	.error {
 		position: absolute;
 		top: 65px;
 		left: 0%;

@@ -6,7 +6,7 @@ import styles from './Filter.module.scss';
 import { keyCode, TYPES, SVG_NAMES, filterId } from '@constants';
 
 const Filter = ({ filterValue, onChangeFilter }) => {
-	const { filter, filter__heading, filter__input, filter__label } = styles;
+	const { filter, heading, input, label } = styles;
 	const { TEXT } = TYPES;
 	const history = useHistory();
 
@@ -23,16 +23,16 @@ const Filter = ({ filterValue, onChangeFilter }) => {
 
 	return (
 		<div className={filter}>
-			<h2 className={filter__heading}>Filter</h2>
+			<h2 className={heading}>Filter</h2>
 			<input
-				className={filter__input}
+				className={input}
 				id={filterId}
 				type={TEXT}
 				value={filterValue}
 				onChange={handleInputChange}
 				onKeyDown={handleFilterChange}
 			/>
-			<label className={filter__label} htmlFor={filterId}>
+			<label className={label} htmlFor={filterId}>
 				<SpriteSvg name={SVG_NAMES.SEARCH} />
 			</label>
 		</div>

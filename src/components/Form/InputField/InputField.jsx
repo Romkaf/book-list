@@ -11,13 +11,11 @@ const InputField = ({ name, label, error, type, onUrlOfImageSave, reset }) => {
 		reset && setValue('');
 	}, [reset]);
 
-	const classField = classNames(styles.field);
-	const classError = classNames(styles.field__error);
-	const classLabel = classNames(styles.field__label, {
-		[styles.field__label_small]: value,
+	const classLabel = classNames(styles.label, {
+		[styles.label_small]: value,
 	});
-	const classInput = classNames(styles.field__input, {
-		[styles.field__input_wrong]: error,
+	const classInput = classNames(styles.input, {
+		[styles.input_wrong]: error,
 	});
 
 	const changeNameOfLabel = (evt) => {
@@ -40,7 +38,7 @@ const InputField = ({ name, label, error, type, onUrlOfImageSave, reset }) => {
 	};
 
 	return (
-		<div className={classField}>
+		<div className={styles.field}>
 			<input
 				className={classInput}
 				id={name}
@@ -54,7 +52,7 @@ const InputField = ({ name, label, error, type, onUrlOfImageSave, reset }) => {
 			<label className={classLabel} htmlFor={name}>
 				{label}
 			</label>
-			{error && <span className={classError}>{error}</span>}
+			{error && <span className={styles.error}>{error}</span>}
 		</div>
 	);
 };
