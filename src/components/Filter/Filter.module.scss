@@ -9,11 +9,19 @@
 	margin: 40px 0 0;
 	margin-right: auto;
 
+	@include media-tablet {
+		width: auto;
+	}
+
 	&__heading {
 		margin-left: 1%;
 		padding-left: 15px;
 		font-size: 1.5em;
 		font-weight: 500;
+
+		@include media-mobile {
+			margin-left: -2%;
+		}
 	}
 
 	&__input {

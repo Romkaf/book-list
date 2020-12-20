@@ -4,6 +4,10 @@
 .wrapper {
 	margin-top: 70px;
 	width: 48%;
+
+	@include media-tablet {
+		width: 100%;
+	}
 }
 
 .card {
@@ -22,6 +26,10 @@
 		margin-bottom: 10px;
 		font-size: 1.5em;
 		font-weight: 500;
+
+		@include media-mobile {
+			left: -2%;
+		}
 	}
 
 	&__editForm {

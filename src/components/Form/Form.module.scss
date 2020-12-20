@@ -10,16 +10,36 @@
 	background-color: $white;
 	box-shadow: 0 0 10px 1px $light-black;
 
+	@include media-mobile {
+		display: flex;
+		flex-direction: column;
+	}
+
 	& ul {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+
+		@include media-tablet {
+			flex-direction: column;
+		}
 	}
 
 	&__elem {
 		width: 45%;
+		min-width: 200px;
 		margin: 0px 8px;
 		padding: 10px 0;
+
+		@include media-tablet {
+			width: auto;
+		}
+
+		&:last-child {
+			@include media-mobile {
+				align-self: center;
+			}
+		}
 	}
 
 	&__button {
@@ -30,6 +50,11 @@
 		margin-right: 28px;
 		background-color: $lighter-black;
 		border-radius: 5px;
+
+		@include media-mobile {
+			position: relative;
+			margin: 25px auto 0;
+		}
 
 		@include hoverSupport {
 			box-shadow: 0 0 3px $black;
