@@ -115,26 +115,4 @@
 		margin-left: auto;
 		padding: 0.1em 0.3em;
 	}
-
-	.btn {
-		display: inline-block;
-		box-sizing: content-box;
-		width: 16px;
-		height: 16px;
-		padding: 2px 4px;
-		margin-right: 5px;
-		color: $dark-black;
-
-		@include hoverSupport {
-			color: $black;
-		}
-
-		&:focus {
-			color: $black;
-		}
-
-		&:last-child {
-			margin-right: 0;
-		}
-	}
 }

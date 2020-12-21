@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import styles from './BookCard.module.scss';
-import SpriteSvg from '@utils/SpriteSvg';
 import { LABELS, SVG_NAMES } from '@constants';
 import BookEdit from '@components/BookCard/BookEdit';
+import Button from './Button';
+import { useHistory } from 'react-router-dom';
+import ModalConfirm from './ModalConfirm';
 
 const BookCard = ({ book, onDeleteBook, onEditBook }) => {
+	const history = useHistory();
+	const refModal = useRef(null);
 	const [isEdit, setIsEdit] = useState(false);
 
 	useEffect(() => {
@@ -27,26 +30,36 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 		author: bookAuthor,
 		otherDetails,
 		buttonWrapper,
-		btn,
 	} = styles;
 
 	const handleBtnEdit = () => {
 		setIsEdit(true);
 	};
 
-	const handleBtnDelete = () => {
+	const handleBtnDeleteSucces = () => {
 		onDeleteBook(id);
+		refModal.current.style.display = 'none';
+		history.push(`/items`);
 	};
+
+	const handledBtnDleteCansel = () => {
+		refModal.current.style.display = 'none';
+		history.push(`/items/${id}`);
+	};
+
+	const handleModalConfirmShow = () =>
+		(refModal.current.style.display = 'block');
+
+	const handleBtnClose = () => history.push(`/items`);
 
 	const buttons = [
 		{
 			title: 'Редактировать',
 			id: EDIT,
 			func: handleBtnEdit,
-			link: `/items/${id}`,
 		},
-		{ title: 'Удалить', id: DELETE, func: handleBtnDelete, link: `/items` },
-		{ title: 'Закрыть', id: CLOSE, link: `/items` },
+		{ title: 'Удалить', id: DELETE, func: handleModalConfirmShow },
+		{ title: 'Закрыть', id: CLOSE, func: handleBtnClose },
 	];
 
 	return (
@@ -80,19 +93,21 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 						</div>
 						<div className={buttonWrapper}>
 							{buttons.map((it) => (
-								<Link
-									to={it.link}
-									className={btn}
+								<Button
 									key={it.id}
 									title={it.title}
-									onClick={it?.func}
-								>
-									<SpriteSvg name={it.id} />
-								</Link>
+									onClick={it.func}
+									svgName={it.id}
+								/>
 							))}
 						</div>
 					</>
 				)}
+				<ModalConfirm
+					confirm={refModal}
+					onConfirmOk={handleBtnDeleteSucces}
+					onConfirmCansel={handledBtnDleteCansel}
+				/>
 			</article>
 		</div>
 	);

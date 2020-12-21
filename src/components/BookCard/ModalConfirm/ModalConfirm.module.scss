@@ -1,0 +1,55 @@
+@import '@styles/variables/mixins.scss';
+@import '@styles/variables/colors.scss';
+
+.wrapper {
+	display: none;
+	position: absolute;
+	left: -50%;
+	transform: translateX(-56%);
+	min-width: 350px;
+	margin-right: 50%;
+	margin-left: 50%;
+	padding: 25px 20px;
+	background-color: $beige;
+	border-radius: 8px;
+
+	@include media-tablet {
+		left: 0;
+		transform: translateX(-50%);
+		margin-top: 10px;
+	}
+
+	@include media-mobile {
+		min-width: 300px;
+		padding: 20px 15px;
+	}
+
+	.text {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 30px;
+		text-align: center;
+
+		@include media-mobile {
+			width: 70%;
+		}
+	}
+
+	.buttons {
+		width: 100%;
+		margin: auto;
+		display: flex;
+		justify-content: space-evenly;
+
+		.btn {
+			width: 100px;
+			padding: 5px;
+			border-radius: 5px;
+			background-color: $light-black;
+
+			@include hoverSupport {
+				background-color: $medium-black;
+			}
+		}
+	}
+}

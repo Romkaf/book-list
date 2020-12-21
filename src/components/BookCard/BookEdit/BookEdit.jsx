@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NAMES, LABELS, EDIT_FORM, TYPES, SVG_NAMES } from '@constants';
-import SpriteSvg from '@utils/SpriteSvg';
 import { validate } from '@utils/validate';
 import styles from './BookEdit.module.scss';
+import Button from '../Button';
 import classNames from 'classnames';
 
 const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
@@ -12,16 +12,9 @@ const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
 
 	const { image, name, author, publisher, date, id } = book;
 	const { NAME, IMAGE, AUTHOR, DATE, PUBLISHER } = NAMES;
-	const { TEXT, FILE, BUTTON } = TYPES;
+	const { TEXT, FILE } = TYPES;
 	const { SAVE, CLOSE } = SVG_NAMES;
-	const {
-		form,
-		form__imgCover,
-		buttons,
-		buttons__btn,
-		error: classError,
-		wrong,
-	} = styles;
+	const { form, form__imgCover, buttons, error: classError, wrong } = styles;
 
 	const handleBtnSave = () => {
 		const form = document.forms[EDIT_FORM];
@@ -66,6 +59,11 @@ const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
 	};
 
 	const handleBtnCansel = () => onSetIsEdit(false);
+
+	const dataButtons = [
+		{ title: 'Сохранить изменения', func: handleBtnSave, svg: SAVE },
+		{ title: 'Отмена', func: handleBtnCansel, svg: CLOSE },
+	];
 
 	const dataBook = [
 		{ name, label: LABELS.NAME, id: NAME, error: errorTexts?.name },
@@ -112,22 +110,20 @@ const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
 				})}
 			</form>
 			<div className={buttons}>
-				<button
-					className={buttons__btn}
-					type={BUTTON}
+				{dataButtons.map((it) => (
+					<Button
+						key={it.svg}
+						title={it.title}
+						onClick={it.func}
+						svgName={it.svg}
+					/>
+				))}
+				{/* <Button
 					title="Сохранить изменения"
 					onClick={handleBtnSave}
-				>
-					<SpriteSvg name={SAVE} />
-				</button>
-				<button
-					className={buttons__btn}
-					type={BUTTON}
-					title="Отмена"
-					onClick={handleBtnCansel}
-				>
-					<SpriteSvg name={CLOSE} />
-				</button>
+					svgName={SAVE}
+				/>
+				<Button title="Отмена" onClick={handleBtnCansel} svgName={CLOSE} /> */}
 			</div>
 		</>
 	);
