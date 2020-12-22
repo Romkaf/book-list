@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { NAMES, LABELS, EDIT_FORM, TYPES, SVG_NAMES } from '@constants';
 import { validate } from '@utils/validate';
@@ -9,6 +9,7 @@ import classNames from 'classnames';
 const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
 	const [errorTexts, setErrorTexts] = useState({});
 	const [urlImage, setUrlImage] = useState('');
+	const imageEl = useRef(null);
 
 	const { image, name, author, publisher, date, id } = book;
 	const { NAME, IMAGE, AUTHOR, DATE, PUBLISHER } = NAMES;
@@ -46,7 +47,7 @@ const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
 			if (evt.target.files[0]) {
 				const reader = new FileReader();
 				reader.onload = () => {
-					evt.target.previousSibling.src = reader.result;
+					imageEl.current.src = reader.result;
 					setUrlImage(reader.result);
 				};
 				reader.readAsDataURL(file);
@@ -87,7 +88,7 @@ const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
 			<form className={form} name={EDIT_FORM}>
 				<h3>Режим редактирования</h3>
 				<div className={form__imgCover}>
-					<img src={image} alt={name} />
+					<img src={image} alt={name} ref={imageEl} />
 					<input type={FILE} id={IMAGE} onChange={handleInputFileChange} />
 				</div>
 				{dataBook.map(({ name, label, id, error }) => {
@@ -118,12 +119,6 @@ const BookEdit = ({ book, onSetIsEdit, onEditBook }) => {
 						svgName={it.svg}
 					/>
 				))}
-				{/* <Button
-					title="Сохранить изменения"
-					onClick={handleBtnSave}
-					svgName={SAVE}
-				/>
-				<Button title="Отмена" onClick={handleBtnCansel} svgName={CLOSE} /> */}
 			</div>
 		</>
 	);

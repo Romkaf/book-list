@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import InputField from './InputField';
 import { validate } from '@utils/validate';
 import { NAMES, TYPES, LABELS, BOOK_FORM } from '@constants';
@@ -9,6 +9,7 @@ const Form = ({ onAddBook }) => {
 	const [errorTexts, setErrorTexts] = useState({});
 	const [urlImage, setUrlImage] = useState('');
 	const [reset, setReset] = useState(false);
+	const labelFile = useRef();
 
 	useEffect(() => {
 		setReset(false);
@@ -50,8 +51,7 @@ const Form = ({ onAddBook }) => {
 	const handleFormReset = () => {
 		const form = document.forms[BOOK_FORM];
 		form.reset();
-		const imageLabel = form[IMAGE].nextElementSibling;
-		imageLabel.innerHTML = LABELS.IMAGE;
+		labelFile.current.innerHTML = LABELS.IMAGE;
 		setUrlImage('');
 		setReset(true);
 	};
@@ -103,6 +103,7 @@ const Form = ({ onAddBook }) => {
 								type={type}
 								onUrlOfImageSave={type === FILE ? handleUrlOfImageSave : null}
 								reset={reset}
+								labelFile={type === FILE ? labelFile : null}
 							/>
 						</li>
 					);

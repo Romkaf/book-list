@@ -47,8 +47,10 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 		history.push(`/items/${id}`);
 	};
 
-	const handleModalConfirmShow = () =>
-		(refModal.current.style.display = 'block');
+	const handleModalConfirmShow = () => {
+		refModal.current.style.display = 'block';
+		refModal.current.focus();
+	};
 
 	const handleBtnClose = () => history.push(`/items`);
 

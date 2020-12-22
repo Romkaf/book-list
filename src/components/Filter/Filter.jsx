@@ -15,7 +15,7 @@ const Filter = ({ filterValue, onChangeFilter }) => {
 		history.push(`/items?search=${evt.target.value}`);
 	};
 
-	const handleFilterChange = (evt) => {
+	const handleInputKeyDown = (evt) => {
 		if (evt.keyCode === keyCode.ESC) {
 			evt.target.blur();
 		}
@@ -30,7 +30,7 @@ const Filter = ({ filterValue, onChangeFilter }) => {
 				type={TEXT}
 				value={filterValue}
 				onChange={handleInputChange}
-				onKeyDown={handleFilterChange}
+				onKeyDown={handleInputKeyDown}
 			/>
 			<label className={label} htmlFor={filterId}>
 				<SpriteSvg name={SVG_NAMES.SEARCH} />

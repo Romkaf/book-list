@@ -4,7 +4,15 @@ import classNames from 'classnames';
 import { NAMES } from '@constants';
 import styles from './InputField.module.scss';
 
-const InputField = ({ name, label, error, type, onUrlOfImageSave, reset }) => {
+const InputField = ({
+	name,
+	label,
+	error,
+	type,
+	onUrlOfImageSave,
+	reset,
+	labelFile,
+}) => {
 	const [value, setValue] = useState('');
 
 	useEffect(() => {
@@ -20,10 +28,9 @@ const InputField = ({ name, label, error, type, onUrlOfImageSave, reset }) => {
 
 	const changeNameOfLabel = (evt) => {
 		const input = evt.target;
-		const label = input.nextElementSibling;
 		const fileName = input.files[0]?.name;
 		if (fileName) {
-			label.innerHTML = fileName;
+			labelFile.current.innerHTML = fileName;
 		}
 	};
 
@@ -49,7 +56,11 @@ const InputField = ({ name, label, error, type, onUrlOfImageSave, reset }) => {
 				maxLength={name === NAMES.DATE ? 4 : null}
 				required
 			/>
-			<label className={classLabel} htmlFor={name}>
+			<label
+				className={classLabel}
+				htmlFor={name}
+				ref={name === 'IMAGE' ? labelFile : null}
+			>
 				{label}
 			</label>
 			{error && <span className={styles.error}>{error}</span>}
@@ -63,6 +74,7 @@ InputField.propTypes = {
 	label: PropTypes.string,
 	error: PropTypes.string,
 	reset: PropTypes.bool,
+	labelFile: PropTypes.object,
 	onUrlOfImageSave: PropTypes.oneOfType([
 		PropTypes.func,
 		PropTypes.instanceOf(null),
