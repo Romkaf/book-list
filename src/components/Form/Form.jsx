@@ -91,24 +91,22 @@ const Form = ({ onAddBook }) => {
 
 	return (
 		<form className={form} name={BOOK_FORM}>
-			<ul>
-				{inputsData.map((it) => {
-					const { name, label, error, type } = it;
-					return (
-						<li className={elem} key={name}>
-							<InputField
-								name={name}
-								label={label}
-								error={error}
-								type={type}
-								onUrlOfImageSave={type === FILE ? handleUrlOfImageSave : null}
-								reset={reset}
-								labelFile={type === FILE ? labelFile : null}
-							/>
-						</li>
-					);
-				})}
-			</ul>
+			{inputsData.map((it) => {
+				const { name, label, error, type } = it;
+				return (
+					<InputField
+						key={name}
+						name={name}
+						label={label}
+						error={error}
+						type={type}
+						onUrlOfImageSave={type === FILE ? handleUrlOfImageSave : null}
+						reset={reset}
+						labelFile={type === FILE ? labelFile : null}
+					/>
+				);
+			})}
+
 			<button className={button} type={BUTTON} onClick={handleBtnClick}>
 				Ввести данные
 			</button>
