@@ -2,16 +2,17 @@
 @import '@styles/variables/colors.scss';
 
 .wrapper {
-	position: absolute;
+	position: fixed;
 	display: none;
 	width: 100vw;
 	height: 100vh;
-	margin-left: calc(-50vw - 8%);
-	margin-top: calc(-50vh - 20%);
+	margin-left: calc(-50vw - 4%);
+	margin-top: calc(-50vh - 9%);
+	background-color: rgba(0, 0, 0, 0.1);
 
 	@include media-tablet {
 		height: calc(120vh - 10%);
-		margin-left: calc(-50vw + 46%);
+		margin-left: calc(-50vw + 42%);
 		margin-top: calc(-50vh - 33%);
 	}
 
