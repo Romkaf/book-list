@@ -3,26 +3,16 @@
 
 .wrapper {
 	position: fixed;
-	display: none;
+	top: 0;
+	right: 0;
 	width: 100vw;
 	height: 100vh;
-	margin-left: calc(-50vw - 4%);
-	margin-top: calc(-50vh - 9%);
-
-	@include media-tablet {
-		height: calc(120vh - 10%);
-		margin-left: calc(-50vw + 42%);
-		margin-top: calc(-50vh - 33%);
-	}
-
-	@include media-mobile {
-		height: calc(120vh - 30%);
-	}
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 .modal {
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	min-width: 350px;
@@ -70,5 +60,25 @@
 				box-shadow: 0 0 3px $black;
 			}
 		}
+	}
+}
+
+.modalEnterActive {
+	animation: opacit 0.5s linear;
+}
+
+.modalExitActive {
+	animation: opacit 0.5s ease-in alternate-reverse;
+}
+
+@keyframes opacit {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
 	}
 }

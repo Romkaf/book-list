@@ -8,8 +8,8 @@ import { useHistory } from 'react-router-dom';
 import ModalConfirm from './ModalConfirm';
 
 const BookCard = ({ book, onDeleteBook, onEditBook }) => {
+	const [isHidden, setIsHidden] = useState(false);
 	const history = useHistory();
-	const refModal = useRef(null);
 	const [isEdit, setIsEdit] = useState(false);
 
 	useEffect(() => {
@@ -32,27 +32,19 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 		buttonWrapper,
 	} = styles;
 
-	const handleBtnEdit = () => {
-		setIsEdit(true);
-	};
+	const handleBtnEdit = () => setIsEdit(true);
+	const handleBtnDelete = () => setIsHidden(true);
+	const handleBtnClose = () => history.push(`/items`);
 
 	const handleBtnDeleteSucces = () => {
 		onDeleteBook(id);
-		refModal.current.style.display = 'none';
 		history.push(`/items`);
 	};
 
 	const handledBtnDleteCansel = () => {
-		refModal.current.style.display = 'none';
+		setIsHidden(false);
 		history.push(`/items/${id}`);
 	};
-
-	const handleModalConfirmShow = () => {
-		refModal.current.style.display = 'block';
-		refModal.current.focus();
-	};
-
-	const handleBtnClose = () => history.push(`/items`);
 
 	const buttons = [
 		{
@@ -60,7 +52,7 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 			id: EDIT,
 			func: handleBtnEdit,
 		},
-		{ title: 'Удалить', id: DELETE, func: handleModalConfirmShow },
+		{ title: 'Удалить', id: DELETE, func: handleBtnDelete },
 		{ title: 'Закрыть', id: CLOSE, func: handleBtnClose },
 	];
 
@@ -106,7 +98,7 @@ const BookCard = ({ book, onDeleteBook, onEditBook }) => {
 					</>
 				)}
 				<ModalConfirm
-					confirm={refModal}
+					isHidden={isHidden}
 					onConfirmOk={handleBtnDeleteSucces}
 					onConfirmCansel={handledBtnDleteCansel}
 				/>
